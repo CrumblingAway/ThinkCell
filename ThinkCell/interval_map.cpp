@@ -1,5 +1,7 @@
 #include <map>
 
+#include <iostream>
+
 template<typename K, typename V>
 class interval_map
 {
@@ -53,8 +55,29 @@ public:
 		}
 
 		// Set new key value mappings.
-		m_map[keyBegin] = val;
-		m_map[keyEnd] = endVal;
+		auto beginIt = m_map.find(keyBegin);
+		if (beginIt == m_map.end())
+		{
+			m_map.insert(std::make_pair(keyBegin, val));
+		}
+		else
+		{
+			beginIt->second = val;
+		}
+
+		auto endIt = m_map.find(keyEnd);
+		if (endIt == m_map.end())
+		{
+			m_map.insert(std::make_pair(keyEnd, endVal));
+		}
+		else
+		{
+			endIt->second = endVal;
+		}
+
+		// CANNOT USE. [] OPERATOR REQUIRES DEFAULT CONSTRUCTION.
+		//m_map[keyBegin] = val;
+		//m_map[keyEnd] = endVal;
 
 		// Canonize.
 
