@@ -30,6 +30,7 @@ Key type K
 
 besides being copyable and assignable, is less-than comparable via operator<, and
 does not implement any other operations, in particular no equality comparison or arithmetic operators.
+
 Value type V
 
 besides being copyable and assignable, is equality-comparable via operator==, and
